@@ -71,6 +71,11 @@ mamba env create -f environment.yml
 conda activate OpenChatKit
 ```
 
+6.a faiss-cpu will not install. So need to install manually
+```shell
+conda install -c pytorch faiss-cpu
+```
+
 ## Chatting with Pythia-Chat-Base-7B
 
 To help you try the model, [`inference/bot.py`](inference/bot.py) is a simple command-line test harness that provides a shell inferface enabling you to chat with the model. Simply enter text at the prompt and the model replies. The test harness also maintains conversation history to provide the model with context.
