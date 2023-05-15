@@ -49,13 +49,13 @@ class ChatModel:
     bot_id = "<bot>"
 
     def __init__(self, model_name, gpu_id, max_memory):
-        device = torch.device('cuda', gpu_id)   # TODO: allow sending to cpu
+        device = torch.device('cpu')   # TODO: allow sending to cpu
 
         # recommended default for devices with > 40 GB VRAM
         # load model onto one device
         if max_memory is None:
             self._model = AutoModelForCausalLM.from_pretrained(
-                model_name, torch_dtype=torch.float16, device_map="auto")
+                model_name, torch_dtype=torch.float32, offload_folder="offload")
             self._model.to(device)
         # load the model with the given max_memory config (for devices with insufficient VRAM or multi-gpu)
         else:
